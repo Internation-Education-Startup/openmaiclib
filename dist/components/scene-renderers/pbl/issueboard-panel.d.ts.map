@@ -1,0 +1,1 @@
+{"version":3,"file":"issueboard-panel.d.ts","sourceRoot":"","sources":["../../../../components/scene-renderers/pbl/issueboard-panel.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,aAAa,EAAY,MAAM,iBAAiB,CAAC;AAG/D,UAAU,oBAAoB;IAC5B,QAAQ,CAAC,UAAU,EAAE,aAAa,CAAC;CACpC;AAED,wBAAgB,eAAe,CAAC,EAAE,UAAU,EAAE,EAAE,oBAAoB,2CAuCnE"}

@@ -1,0 +1,31 @@
+export interface CanvasToolbarProps {
+    readonly currentSceneIndex: number;
+    readonly scenesCount: number;
+    readonly engineState: 'idle' | 'playing' | 'paused';
+    readonly isLiveSession?: boolean;
+    readonly whiteboardOpen: boolean;
+    readonly sidebarCollapsed?: boolean;
+    readonly chatCollapsed?: boolean;
+    readonly onToggleSidebar?: () => void;
+    readonly onToggleChat?: () => void;
+    readonly onPrevSlide: () => void;
+    readonly onNextSlide: () => void;
+    readonly onPlayPause: () => void;
+    readonly onWhiteboardClose: () => void;
+    readonly showStopDiscussion?: boolean;
+    readonly onStopDiscussion?: () => void;
+    readonly isPresenting?: boolean;
+    readonly onTogglePresentation?: () => void;
+    readonly className?: string;
+    readonly ttsEnabled?: boolean;
+    readonly ttsMuted?: boolean;
+    readonly ttsVolume?: number;
+    readonly onToggleMute?: () => void;
+    readonly onVolumeChange?: (volume: number) => void;
+    readonly autoPlayLecture?: boolean;
+    readonly onToggleAutoPlay?: () => void;
+    readonly playbackSpeed?: number;
+    readonly onCycleSpeed?: () => void;
+}
+export declare function CanvasToolbar({ currentSceneIndex, scenesCount, engineState, isLiveSession, whiteboardOpen, sidebarCollapsed, chatCollapsed, onToggleSidebar, onToggleChat, onPrevSlide, onNextSlide, onPlayPause, onWhiteboardClose, showStopDiscussion, onStopDiscussion, isPresenting, onTogglePresentation, className, ttsEnabled, ttsMuted, ttsVolume, onToggleMute, onVolumeChange, autoPlayLecture, onToggleAutoPlay, playbackSpeed, onCycleSpeed, }: CanvasToolbarProps): import("react/jsx-runtime").JSX.Element;
+//# sourceMappingURL=canvas-toolbar.d.ts.map

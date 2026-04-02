@@ -1,0 +1,1 @@
+{"version":3,"file":"audio-indicator.d.ts","sourceRoot":"","sources":["../../../components/roundtable/audio-indicator.tsx"],"names":[],"mappings":"AAIA,MAAM,MAAM,mBAAmB,GAAG,MAAM,GAAG,YAAY,GAAG,SAAS,CAAC;AAEpE,UAAU,mBAAmB;IAC3B,KAAK,EAAE,mBAAmB,CAAC;IAC3B,UAAU,CAAC,EAAE,MAAM,CAAC;CACrB;AAID,wBAAgB,cAAc,CAAC,EAAE,KAAK,EAAE,UAAsB,EAAE,EAAE,mBAAmB,2CA6BpF"}

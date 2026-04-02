@@ -1,0 +1,1 @@
+{"version":3,"file":"image-settings.d.ts","sourceRoot":"","sources":["../../../components/settings/image-settings.tsx"],"names":[],"mappings":"AAsBA,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEzD,UAAU,kBAAkB;IAC1B,kBAAkB,EAAE,eAAe,CAAC;CACrC;AAED,wBAAgB,aAAa,CAAC,EAAE,kBAAkB,EAAE,EAAE,kBAAkB,2CA+TvE"}
