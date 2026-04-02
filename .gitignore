@@ -2,3 +2,6 @@ node_modules/
 *.log
 .DS_Store
 .env
+dist/
+packages/ui/dist/
+packages/engine/dist/

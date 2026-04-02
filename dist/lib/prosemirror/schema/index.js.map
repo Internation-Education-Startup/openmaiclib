@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sources":["../../../../lib/prosemirror/schema/index.ts"],"sourcesContent":["import nodes from './nodes';\r\nimport marks from './marks';\r\n\r\nexport const schemaNodes = nodes;\r\nexport const schemaMarks = marks;\r\n"],"names":["schemaNodes","nodes","schemaMarks","marks"],"mappings":";;AAGO,MAAMA,IAAcC,GACdC,IAAcC;"}

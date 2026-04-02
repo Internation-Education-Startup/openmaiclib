@@ -1,1 +1,0 @@
-{"version":3,"file":"setListStyle.d.ts","sourceRoot":"","sources":["../../../../lib/prosemirror/commands/setListStyle.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,kBAAkB,CAAC;AAGnD,KAAK,KAAK,GAAG,MAAM,CAAC,MAAM,EAAE,MAAM,CAAC,CAAC;AAEpC,eAAO,MAAM,YAAY,GAAI,MAAM,UAAU,EAAE,OAAO,KAAK,GAAG,KAAK,EAAE,4CAuBpE,CAAC"}

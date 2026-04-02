@@ -1,1 +1,0 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../lib/prosemirror/plugins/index.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,MAAM,EAAE,MAAM,mBAAmB,CAAC;AAUhD,MAAM,WAAW,aAAa;IAC5B,WAAW,CAAC,EAAE,MAAM,CAAC;CACtB;AAED,eAAO,MAAM,YAAY,GAAI,QAAQ,MAAM,EAAE,UAAU,aAAa,8CAenE,CAAC"}

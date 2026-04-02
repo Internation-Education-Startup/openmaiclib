@@ -1,1 +1,0 @@
-{"version":3,"file":"scene-renderer.d.ts","sourceRoot":"","sources":["../../../components/stage/scene-renderer.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,KAAK,EAAE,SAAS,EAAE,MAAM,mBAAmB,CAAC;AAM1D,UAAU,kBAAkB;IAC1B,QAAQ,CAAC,KAAK,EAAE,KAAK,CAAC;IACtB,QAAQ,CAAC,IAAI,EAAE,SAAS,CAAC;CAC1B;AAED,wBAAgB,aAAa,CAAC,EAAE,KAAK,EAAE,IAAI,EAAE,EAAE,kBAAkB,2CAqBhE"}

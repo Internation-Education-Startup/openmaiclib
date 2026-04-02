@@ -1,1 +1,0 @@
-{"version":3,"file":"ElementCreateSelection.d.ts","sourceRoot":"","sources":["../../../../../components/slide-renderer/Editor/Canvas/ElementCreateSelection.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,0BAA0B,EAAE,MAAM,kBAAkB,CAAC;AAEnE,UAAU,2BAA2B;IACnC,SAAS,EAAE,CAAC,IAAI,EAAE,0BAA0B,KAAK,IAAI,CAAC;CACvD;AAED,wBAAgB,sBAAsB,CAAC,EAAE,SAAS,EAAE,EAAE,2BAA2B,2CA8LhF"}

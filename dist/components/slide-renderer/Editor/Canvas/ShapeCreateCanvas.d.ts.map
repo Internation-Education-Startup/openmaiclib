@@ -1,1 +1,0 @@
-{"version":3,"file":"ShapeCreateCanvas.d.ts","sourceRoot":"","sources":["../../../../../components/slide-renderer/Editor/Canvas/ShapeCreateCanvas.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,qBAAqB,EAAE,MAAM,kBAAkB,CAAC;AAK9D,UAAU,sBAAsB;IAC9B,SAAS,EAAE,CAAC,IAAI,EAAE,qBAAqB,KAAK,IAAI,CAAC;CAClD;AAED,wBAAgB,iBAAiB,CAAC,EAAE,SAAS,EAAE,EAAE,sBAAsB,2CAiLtE"}

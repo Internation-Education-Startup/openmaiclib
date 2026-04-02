@@ -1,4 +1,0 @@
-import { Schema } from 'prosemirror-model';
-import { Command } from 'prosemirror-state';
-export declare const buildKeymap: (schema: Schema) => Record<string, Command>;
-//# sourceMappingURL=keymap.d.ts.map

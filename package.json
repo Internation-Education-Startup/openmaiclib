@@ -31,6 +31,10 @@
   "scripts": {
     "build": "vite build",
     "build:types": "tsc --emitDeclarationOnly",
+    "build:ui": "cd packages/ui && npx vite build",
+    "build:engine": "cd packages/engine && npx vite build",
+    "build:all": "npm run build:ui && npm run build:engine",
+    "prepare": "npm run build:all",
     "dev": "vite build --watch"
   },
   "peerDependencies": {

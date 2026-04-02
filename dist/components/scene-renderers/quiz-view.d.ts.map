@@ -1,1 +1,0 @@
-{"version":3,"file":"quiz-view.d.ts","sourceRoot":"","sources":["../../../components/scene-renderers/quiz-view.tsx"],"names":[],"mappings":"AAqBA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,mBAAmB,CAAC;AAgBtD,UAAU,aAAa;IACrB,QAAQ,CAAC,SAAS,EAAE,YAAY,EAAE,CAAC;IACnC,QAAQ,CAAC,OAAO,EAAE,MAAM,CAAC;CAC1B;AAuoBD,wBAAgB,QAAQ,CAAC,EAAE,SAAS,EAAE,OAAO,EAAE,EAAE,aAAa,2CA6T7D"}

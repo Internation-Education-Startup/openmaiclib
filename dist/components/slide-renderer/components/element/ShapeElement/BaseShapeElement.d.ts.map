@@ -1,1 +1,0 @@
-{"version":3,"file":"BaseShapeElement.d.ts","sourceRoot":"","sources":["../../../../../../components/slide-renderer/components/element/ShapeElement/BaseShapeElement.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,eAAe,EAAa,MAAM,oBAAoB,CAAC;AAQrE,MAAM,WAAW,qBAAqB;IACpC,WAAW,EAAE,eAAe,CAAC;CAC9B;AAED;;GAEG;AACH,wBAAgB,gBAAgB,CAAC,EAAE,WAAW,EAAE,EAAE,qBAAqB,2CAoGtE"}
