@@ -38,6 +38,7 @@ import { ActionEngine } from '@/lib/action/engine';
 import { useCanvasStore } from '@/lib/store/canvas';
 import { useSettingsStore } from '@/lib/store/settings';
 import { createLogger } from '@/lib/logger';
+import { pickBestVoiceForLang } from '@/lib/audio/browser-tts-preview';
 
 const log = createLogger('PlaybackEngine');
 
@@ -600,13 +601,39 @@ export class PlaybackEngine {
    * never fires, causing the engine to hang. Chunking avoids this.
    */
   private splitIntoChunks(text: string): string[] {
-    // Split on sentence-ending punctuation (Latin + CJK) and newlines
-    const chunks = text
+    // ~10s of CJK speech at default rate. Stays well under Chrome's ~15s cutoff.
+    const MAX_CHARS = 150;
+
+    let sentences = text
       .split(/(?<=[.!?。！？\n])\s*/)
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
-    // If splitting produced nothing (no punctuation), return the original text
-    return chunks.length > 0 ? chunks : [text];
+    if (sentences.length === 0) sentences = [text];
+
+    // Long Chinese sentences may have only commas/semicolons — break those down
+    // further so no chunk exceeds MAX_CHARS, otherwise the chunk hits Chrome's
+    // ~15s bug and onend never fires.
+    const result: string[] = [];
+    for (const sentence of sentences) {
+      if (sentence.length <= MAX_CHARS) {
+        result.push(sentence);
+        continue;
+      }
+      const clauses = sentence
+        .split(/(?<=[,，;；:：])\s*/)
+        .map((s) => s.trim())
+        .filter((s) => s.length > 0);
+      for (const clause of clauses) {
+        if (clause.length <= MAX_CHARS) {
+          result.push(clause);
+        } else {
+          for (let i = 0; i < clause.length; i += MAX_CHARS) {
+            result.push(clause.slice(i, i + MAX_CHARS));
+          }
+        }
+      }
+    }
+    return result;
   }
 
   /**
@@ -637,9 +664,11 @@ export class PlaybackEngine {
     const chunkText = this.browserTTSChunks[this.browserTTSChunkIndex];
     const utterance = new SpeechSynthesisUtterance(chunkText);
 
-    // Apply settings
+    // Apply settings. Clamp to [0.5, 1.5] — Web Speech API allows up to 10x,
+    // but macOS Chrome Google/Apple zh voices distort badly above ~1.5x.
     const speed = this.callbacks.getPlaybackSpeed?.() ?? 1;
-    utterance.rate = (settings.ttsSpeed ?? 1) * speed;
+    const rawRate = (settings.ttsSpeed ?? 1) * speed;
+    utterance.rate = Math.min(1.5, Math.max(0.5, rawRate));
     utterance.volume = settings.ttsMuted ? 0 : (settings.ttsVolume ?? 1);
 
     // Ensure voices are loaded (Chrome loads them asynchronously)
@@ -656,11 +685,19 @@ export class PlaybackEngine {
       }
     }
     if (!voiceFound) {
-      // No usable voice configured — detect text language so the browser
-      // auto-selects an appropriate voice.
+      // No usable voice configured — detect text language and actively pick
+      // a high-quality voice. Letting the browser auto-pick falls back to
+      // low-quality "Compact" voices on macOS that sound robotic.
       const cjkRatio =
         (chunkText.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g) || []).length / chunkText.length;
-      utterance.lang = cjkRatio > CJK_LANG_THRESHOLD ? 'zh-CN' : 'en-US';
+      const targetLang = cjkRatio > CJK_LANG_THRESHOLD ? 'zh-CN' : 'en-US';
+      const picked = pickBestVoiceForLang(voices, targetLang);
+      if (picked) {
+        utterance.voice = picked;
+        utterance.lang = picked.lang;
+      } else {
+        utterance.lang = targetLang;
+      }
     }
 
     utterance.onend = () => {

@@ -38,8 +38,18 @@ export class AudioPlayer {
         else this.audio.volume = this.volume;
         this.audio.defaultPlaybackRate = this.playbackRate;
         this.audio.playbackRate = this.playbackRate;
-        this.audio.addEventListener('ended', () => {
+        let finished = false;
+        const handleEnd = () => {
+          if (finished) return;
+          finished = true;
           this.onEndedCallback?.();
+        };
+        this.audio.addEventListener('ended', handleEnd);
+        // Without this, decode failures hang the engine: 'ended' never fires
+        // and onEndedCallback never runs.
+        this.audio.addEventListener('error', () => {
+          log.warn('Audio error (likely decode failure), advancing playback');
+          handleEnd();
         });
         await this.audio.play();
         this.audio.playbackRate = this.playbackRate;
@@ -71,9 +81,17 @@ export class AudioPlayer {
       this.audio.playbackRate = this.playbackRate;
 
       // Set ended callback
-      this.audio.addEventListener('ended', () => {
+      let finished = false;
+      const handleEnd = () => {
+        if (finished) return;
+        finished = true;
         URL.revokeObjectURL(blobUrl);
         this.onEndedCallback?.();
+      };
+      this.audio.addEventListener('ended', handleEnd);
+      this.audio.addEventListener('error', () => {
+        log.warn('Audio error (likely decode failure), advancing playback');
+        handleEnd();
       });
 
       // Play
