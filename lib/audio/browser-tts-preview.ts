@@ -68,6 +68,34 @@ export async function ensureVoicesLoaded(): Promise<SpeechSynthesisVoice[]> {
   });
 }
 
+/**
+ * Pick a high-quality browser voice for a target language. Avoids Apple
+ * "Compact" voices (robotic, tiny) and prefers online/neural/premium variants.
+ * Returns null if no voices match the language at all.
+ */
+export function pickBestVoiceForLang(
+  voices: SpeechSynthesisVoice[],
+  lang: string,
+): SpeechSynthesisVoice | null {
+  const langPrefix = lang.split('-')[0].toLowerCase();
+  const candidates = voices.filter((v) => v.lang.toLowerCase().startsWith(langPrefix));
+  if (candidates.length === 0) return null;
+
+  const tiers: Array<(v: SpeechSynthesisVoice) => boolean> = [
+    (v) => /microsoft/i.test(v.name) && /(online|neural)/i.test(v.name),
+    (v) => /google/i.test(v.name),
+    (v) => /(premium|enhanced)/i.test(v.name),
+    (v) => /microsoft/i.test(v.name),
+    (v) => !/compact/i.test(v.name),
+  ];
+
+  for (const matcher of tiers) {
+    const found = candidates.find(matcher);
+    if (found) return found;
+  }
+  return candidates[0];
+}
+
 /** Resolve a browser voice by voiceURI, name, or lang, with language fallback by text. */
 export function resolveBrowserVoice(
   voices: SpeechSynthesisVoice[],
@@ -82,9 +110,15 @@ export function resolveBrowserVoice(
         ) || null
       : null;
 
+  if (matchedVoice) {
+    return { voice: matchedVoice, lang: matchedVoice.lang };
+  }
+
+  const inferredLang = inferPreviewLang(text);
+  const picked = pickBestVoiceForLang(voices, inferredLang);
   return {
-    voice: matchedVoice,
-    lang: matchedVoice?.lang || inferPreviewLang(text),
+    voice: picked,
+    lang: picked?.lang || inferredLang,
   };
 }
 
